@@ -1,0 +1,82 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="{$Think.const.ADMIN_CSS_URL}base.css" />
+<link rel="stylesheet" href="{$Think.const.ADMIN_CSS_URL}info-reg.css" />
+
+<title>万盟办公自动化系统</title>
+<style type='text/css'>
+	select {
+		background: rgba(0, 0, 0, 0) url("{$Think.const.ADMIN_IMAGES_URL}inputbg.png") repeat-x scroll 0 0;
+	    border: 1px solid #c5d6e0;
+	    height: 28px;
+	    outline: medium none;
+	    padding: 0 8px;
+	    width: 240px;
+	}
+	.main p input {
+		float:none;
+	}
+</style>
+</head>
+
+<body>
+<div class="title"><h2>会议申请</h2></div>
+<form action="" method="post" enctype="multipart/form-data">
+<div class="main">
+	<p class="short-input ue-clear">
+    	<label>会议主题：</label>
+        <input name="title" type="text" placeholder="标题..." />
+    </p>
+    <p class="short-input ue-clear">
+    	<label>会议资料：</label>
+        <input name="file" type="file"/>
+    </p>
+    <p class="short-input ue-clear">
+    	<label>参与人员：</label>
+        <input name="people" type="text" placeholder="参与人员..." />
+    </p>
+    <p class="short-input ue-clear">
+    	<label>时间：</label>
+    	<!-- 使用时间控件，方便选择日期 -->
+        <input name="starttime" class="sang_Calender" type="text"  onfocus="datetime()"/>
+        <script type="text/javascript" src="{$Think.const.ADMIN_JS_URL}datetime.js"></script>
+        <!-- onfocus="WdatePicker({dateFmt:'yyyy-MM-dd'})" -->
+    </p>
+    <p class="short-input ue-clear">
+    	<label>会议目的：</label>
+        <textarea name="content" style="font-family:Microsoft YaHei !important; font-size:14px;" placeholder="请输入内容..." ></textarea>
+    </p>
+</div>
+<div class="btn ue-clear">
+	<a href="javascript:;" class="confirm" id='btnSubmit'>确定</a>
+    <a href="javascript:;" class="clear" id='btnReset'>清空内容</a>
+</div>
+</form>
+</body>
+<script type="text/javascript" src="{$Think.const.ADMIN_JS_URL}jquery.js"></script>
+<script type="text/javascript" src="{$Think.const.ADMIN_JS_URL}common.js"></script>
+<script type="text/javascript" src="{$Think.const.ADMIN_JS_URL}WdatePicker.js"></script>
+<script type="text/javascript">
+$(function(){
+	$('#btnSubmit').on('click',function(){
+		$('form').submit();
+	});
+	
+	$('#btnReset').on('click',function(){
+		$('form')[0].reset();
+	});
+});	
+
+$(".select-title").on("click",function(){
+	$(".select-list").toggle();
+	return false;
+});
+$(".select-list").on("click","li",function(){
+	var txt = $(this).text();
+	$(".select-title").find("span").text(txt);
+});
+showRemind('input[type=text], textarea','placeholder');
+</script>
+</html>

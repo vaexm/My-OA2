@@ -1,0 +1,143 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="{$Think.const.ADMIN_CSS_URL}base.css" />
+<link rel="stylesheet" type="text/css" href="{$Think.const.ADMIN_CSS_URL}jquery.dialog.css" />
+<link rel="stylesheet" href="{$Think.const.ADMIN_CSS_URL}index.css" />
+<title>万盟办公系统</title>
+</head>
+
+<body>
+<div id="container">
+  <div id="hd">
+    <div class="hd-wrap ue-clear">
+      <div class="top-light"></div>
+      <h1 class="logo"></h1>
+      <div class="login-info ue-clear">
+        <div class="welcome ue-clear"><span>欢迎您,</span><a href="javascript:;" class="user-name">{$Think.session.username}</a></div>
+        <div class="login-msg ue-clear"> <a href="{:U('Email/recBox')}" target="iframe" class="msg-txt">消息</a> <a href="{:U('Email/recBox')}" target="iframe" class="msg-num">0</a> </div>
+      </div>
+      <div class="toolbar ue-clear"> <a href="javascript:;" class="home-btn">首页</a> <a href="javascript:;" class="quit-btn exit"></a> </div>
+    </div>
+  </div>
+  <div id="bd">
+    <div class="wrap ue-clear">
+      <div class="sidebar">
+        <h2 class="sidebar-header">
+          <p>功能导航</p>
+        </h2>
+        <ul class="nav">
+          <li class="office current">
+            <div class="nav-header"><a href="javascript:;" date-src="home.html" class="ue-clear"><span>日常办公</span><i class="icon"></i></a></div>
+          </li>
+          <li class="gongwen">
+            <div class="nav-header"><a href="javascript:;" class="ue-clear"><span>公文管理</span><i class="icon"></i></a></div>
+            <ul class="subnav">
+              <li><a href="javascript:;" date-src="{:U('Doc/showList')}">公文列表</a></li>
+              <li><a href="javascript:;" date-src="{:U('Doc/add')}">添加公文</a></li>
+            </ul>
+          </li>
+          <li class="nav-info">
+            <div class="nav-header"><a href="javascript:;" class="ue-clear"><span>职员管理</span><i class="icon"></i></a></div>
+            <ul class="subnav">
+              <li><a href="javascript:;" date-src="{:U('User/showList')}">职员列表</a></li>
+              <li><a href="javascript:;" date-src="{:U('User/add')}">添加职员</a></li>
+            </ul>
+          </li>
+          <li class="konwledge">
+            <div class="nav-header"><a href="javascript:;" class="ue-clear"><span>资料管理</span><i class="icon"></i></a></div>
+            <ul class="subnav">
+              <li><a href="javascript:;" date-src="{:U('Knowledge/showList')}">资料列表</a></li>
+              <li><a href="javascript:;" date-src="{:U('Knowledge/add')}">添加资料</a></li>
+            </ul>
+          </li>
+          <li class="agency">
+            <div class="nav-header"><a href="javascript:;" class="ue-clear"><span>组织结构</span><i class="icon"></i></a></div>
+            <ul class="subnav">
+              <li><a href="javascript:;" date-src="{:U('Dept/showList')}">部门列表</a></li>
+              <li><a href="javascript:;" date-src="{:U('Dept/add')}">添加部门</a></li>
+            </ul>
+          </li>
+          <li class="email">
+            <div class="nav-header"><a href="javascript:;" class="ue-clear"><span>邮件管理</span><i class="icon"></i></a></div>
+            <ul class="subnav">
+              <li><a href="javascript:;" date-src="{:U('Email/send')}">发邮件</a></li>
+              <li><a href="javascript:;" date-src="{:U('Email/sendBox')}">发件箱</a></li>
+              <li><a href="javascript:;" date-src="{:U('Email/recBox')}">收件箱</a></li>
+            </ul>
+          </li>
+           <!-- <li class="calendar">
+            <div class="nav-header"><a href="javascript:;"  date-src="{:U('Schedule/index')}" class="ue-clear"><span>日程安排</span><i class="icon"></i></a></div>
+            
+          </li> -->
+           <li class="meeting">
+            <div class="nav-header"><a href="javascript:;" class="ue-clear"><span>会议管理</span><i class="icon"></i></a></div>
+             <ul class="subnav">
+              <li><a href="javascript:;" date-src="{:U('Meeting/showList')}">会议列表</a></li>
+              <li><a href="javascript:;" date-src="{:U('Meeting/add')}">发布会议</a></li>
+              <li><a href="javascript:;" date-src="{:U('Meeting/isMeeting')}">已举行会议</a></li>
+              <li><a href="javascript:;" date-src="{:U('Meeting/noMeeting')}">未举行会议</a></li>
+            </ul>
+          </li>
+          <li class="system">
+            <div class="nav-header"><a href="javascript:;" class="ue-clear"><span>系统管理</span><i class="icon"></i></a></div>
+            <ul class="subnav">
+              <li><a href="javascript:;" date-src="{:U('Index/showInfo')}">个人信息</a></li>
+              <li><a href="javascript:;" date-src="{:U('Index/password')}">修改密码</a></li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+      <div class="content">
+        <!--
+          http://1006.com/index.php/Admin/Index/index
+          http://1006.com/index.php/Admin/Index/home
+        -->
+        <iframe name="iframe" src="__CONTROLLER__/home" id="iframe" width="100%" height="100%" frameborder="0"></iframe>
+      </div>
+    </div>
+  </div>
+  <div id="ft" class="ue-clear">
+    <div class="ft-left"> <span>万盟</span> <em>Office&nbsp;System</em> </div>
+    <div class="ft-right"> <span>Automation</span> <em>V2.0&nbsp;2017</em> </div>
+  </div>
+</div>
+<div class="exitDialog">
+  <div class="dialog-content">
+    <div class="ui-dialog-icon"></div>
+    <div class="ui-dialog-text">
+      <p class="dialog-content">你确定要退出系统？</p>
+      <p class="tips">如果是请点击“确定”，否则点“取消”</p>
+      <div class="buttons">
+        <input type="button" class="button long2 ok" value="确定" />
+        <input type="button" class="button long2 normal" value="取消" />
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+<script type="text/javascript" src="{$Think.const.ADMIN_JS_URL}jquery.js"></script>
+<script type="text/javascript" src="{$Think.const.ADMIN_JS_URL}common.js"></script>
+<script type="text/javascript" src="{$Think.const.ADMIN_JS_URL}core.js"></script>
+<script type="text/javascript" src="{$Think.const.ADMIN_JS_URL}jquery.dialog.js"></script>
+<script type="text/javascript" src="{$Think.const.ADMIN_JS_URL}index.js"></script>
+<script type="text/javascript">
+
+//实现邮件实时提醒的功能
+//ajax请求方法
+function getMsgCount(){
+  //发送ajax请求  get,post,ajax
+  $.get("{:U('Email/getCount')}", function(data) {
+    //相应的处理代码
+    $('.msg-num').html(data);
+  });
+}
+//jQuery代码
+$(function(){
+	//页面载入时间
+  //定时器
+  setInterval('getMsgCount()',3000);
+});
+</script>
+</html>

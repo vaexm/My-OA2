@@ -1,0 +1,146 @@
+<html>
+<head>
+<style type='text/css'>
+.div_one{
+	width:100%;
+	height:auto;
+	background-color:#F5F5F5;
+}
+.div_one p{ padding-top:10px; padding-left:31px; line-height:30px;}
+.div_one p label{ float:left; width:15%; text-align:center;}
+.input1{ float:left;  width:85%; height:35px;line-height:28px\0;*line-height:28px; padding:0 10px; outline:none;border:1px solid #E5E6E7; 
+background-color:white;}
+.div_one p input[type="text"]{}
+.time{
+	float:left;  width:20%; height:35px;line-height:28px\0;*line-height:28px; padding:0 10px; outline:none;border:1px solid #E5E6E7; 
+background-color:white;
+}
+.btn{ padding:13px 0 53px 113px;}
+.btn a{ float:left; margin-right:7px; text-align:center; border:none; text-decoration:none;
+border-radius:2px; font-size:14px;}
+.btn a.confirm{ width:88px; height:33px; line-height:33px; background:#68b86c; color:#fff; }
+.btn a.clear{ width:98px; height:31px; line-height:31px; color:#000; border:1px solid #c1d3de; background:url(../images/formbtnbg01.png) repeat-x;}
+</style>
+
+<script scr="{$Think.const.ADMIN_JS_URL}js2/jquery-2.1.1.js"></script>
+<script type="text/javascript" src="{$Think.const.ADMIN_JS_URL}jquery.js"></script>
+<script type="text/javascript" src="{$Think.const.ADMIN_JS_URL}common.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Admin/js/WdatePicker.js"></script> 
+<script type="text/javascript" src="__PUBLIC__/Admin/js/bootstrap-datetimepicker.js"></script>
+</head>
+<body>
+<div style='width:100%;height:30px;'>
+<span style="font-size:20px;">新建日历事项</span>
+</div>
+<hr style="color:#F5F5F5;"/>
+<div class='div_one'>
+<form action="" method="post" enctype="multipart/form-data">
+<p>
+<label>标题*:</label>
+<input type='text' name='titel' class='input1'/>
+</p><br/>
+<p>
+<label>开始时间*:</label>
+<!-- 使用时间控件，方便选择日期 -->
+<input style="height:35px;" class='time'  name="start" type="text" id="start_date" 
+onfocus="WdatePicker({dateFmt:'yyyy-MM-dd'})"/>
+</p>
+<p>
+<label style="margin-top:-26px;margin-left:130px;">结束时间*:</label>
+<!-- 使用时间控件，方便选择日期 -->  <!-- onfocus="WdatePicker({dateFmt:'yyyy-MM-dd'})" -->
+<input style="margin-top:-25px;margin-left:25px;height:35px;width:20%;" class='time' id="end_date" name="end" type="text"
+onfocus="WdatePicker({dateFmt:'yyyy-MM-dd'})"/>
+</p>
+<p>
+<label>地点*:</label>
+<input type="text" name="place"  class="input1"/>
+</p><br/>
+<p>
+<label>参与人员*:</label>
+<input type="text" name="people"  class="input1"/>
+</p> <br/>
+<p>
+    	<label>附件*：</label>
+        <input name="file" type="file"/>
+ </p>
+<p>
+    	<!-- <textarea placeholder="内容" name="content"></textarea> -->
+    	<!-- 设置标签，定义富文本编辑器位置 -->
+    	<script id="editor" name='content' type="text/plain" style="width:95%;height:260px;"></script>	
+</p>
+<div class="btn ue-clear">
+	<a href="javascript:;" class="confirm" id='btnSubmit'>保存</a>
+    <a href="javascript:;" class="clear" id='btnReset'>取消</a>
+</div>
+</form>
+
+</div>
+<!-- 引入与ue编辑器相关的js文件 -->
+<script type="text/javascript" src="{$Think.const.ADMIN_JS_URL}plugin/ue/ueditor.config.js"></script>
+<script type="text/javascript" src="{$Think.const.ADMIN_JS_URL}plugin/ue/ueditor.all.min.js"></script>
+<script type="text/javascript" src="{$Think.const.ADMIN_JS_URL}plugin/ue/lang/zh-ch/zh-ch.js"></script> 
+<script type='text/javascript'>
+//实例化容器，要求id是容器的id
+var ue = UE.getEditor('editor');
+$(function(){
+
+	$('#btnSubmit').on('click',function(){
+		$('form').submit();
+	});
+	
+	$('#btnReset').on('click',function(){
+		$('form')[0].reset();
+	});
+});	
+$(document).ready(function() {
+	 $('.time').datetimepicker({
+		format : 'YYYY-MM-DD',
+		locale : 'zh-cn',
+		ignoreReadonly : true,
+		widgetPositioning : {
+			horizontal : 'auto',
+			vertical : 'bottom'
+		},
+	});
+	
+	$(".input-daterange input").datetimepicker({
+		format : "YYYY-MM-DD",
+		locale : 'zh-cn',
+		showTodayButton : true,
+		showClose : true,
+		ignoreReadonly : true,
+		widgetPositioning : {
+			horizontal : 'auto',
+			vertical : 'bottom'
+		},
+	});
+
+	$("#start_date").on("dp.change", function(e) {
+		if ($("#end_date").length > 0) {
+			$('#end_date').data("DateTimePicker").minDate(e.date);
+		}
+	});
+	
+	$("#end_date").on("dp.change", function(e) {
+		if ($("#start_date").length > 0) {
+			$('#start_date').data("DateTimePicker").maxDate(e.date);
+		}
+	});
+
+	$(".input-date-time").datetimepicker({
+		format : 'YYYY-MM-DD HH:mm',
+		locale : 'zh-cn',
+		sideBySide : true,
+		showTodayButton : true,
+		showClose : true,
+		ignoreReadonly : true,
+		widgetPositioning : {
+			horizontal : 'auto',
+			vertical : 'bottom'
+		},
+	}); 
+});
+
+</script>
+</body>
+</html>
